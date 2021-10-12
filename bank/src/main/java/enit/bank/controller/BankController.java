@@ -1,5 +1,6 @@
 package enit.bank.controller;
 
+import enit.bank.domain.entity.AccountTransaction;
 import enit.bank.domain.resource.ClientTransaction;
 import enit.bank.service.BankService;
 import lombok.extern.slf4j.Slf4j;
@@ -23,14 +24,12 @@ public class BankController {
     BankService bankService;
     
     @POST
+    @Path("/transaction/make")
     @Transactional
-    public Response MakeTransaction(ClientTransaction clientTransaction) {
+    public Response MakeTransaction(AccountTransaction accountTransaction) {
 
-        //check the code + password
-        //create a new transaction from the resource got in the request body
-        //persist the new transaction
-        //return the response (transaction done or not )
-        return Response.ok().status(201).build();
+        bankService.MakeTransaction(accountTransaction);
+        return Response.ok(accountTransaction).status(201).build();
     }
 
 }

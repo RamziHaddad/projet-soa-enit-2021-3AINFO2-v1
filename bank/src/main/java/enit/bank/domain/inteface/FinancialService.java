@@ -1,9 +1,7 @@
 package enit.bank.domain.inteface;
 
-import enit.bank.domain.resource.ClientTransaction;
-
-import javax.ws.rs.core.Response;
+import enit.bank.domain.entity.AccountTransaction;
 
 public interface FinancialService {
-    ClientTransaction MakeTransaction(ClientTransaction clientTransaction);
+    AccountTransaction MakeTransaction(AccountTransaction acc);
 }
