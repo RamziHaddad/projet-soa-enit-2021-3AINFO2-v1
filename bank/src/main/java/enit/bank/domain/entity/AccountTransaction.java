@@ -6,7 +6,6 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name="accounts_transaction")
 @NoArgsConstructor @AllArgsConstructor
 @Setter @Getter
 @ToString
@@ -16,7 +15,8 @@ public class AccountTransaction {
     private Long TransactionAccountCode;
     private Date TransactionDate;
     private Long TransactionAmount;
-    @ManyToOne
-    @JoinColumn(name="bank_account", nullable=false)
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "AccountCode")
     private BankAccount account;
 }
