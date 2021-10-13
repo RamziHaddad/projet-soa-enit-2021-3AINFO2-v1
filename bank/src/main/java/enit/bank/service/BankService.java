@@ -11,7 +11,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.enterprise.context.ApplicationScoped;
 
+@ApplicationScoped
 @NoArgsConstructor
 @Getter @Setter
 public class BankService implements FinancialService, AccountManager {
@@ -29,8 +31,8 @@ public class BankService implements FinancialService, AccountManager {
     }
 
     @Override
-    public BankAccount CreateAccount(BankAccount bancAccount) {
-        bankAccountRepo.save(bancAccount);
-        return bancAccount;
+    public BankAccount CreateAccount(BankAccount bankAccount) {
+        bankAccountRepo.save(bankAccount);
+        return bankAccount;
     }
 }
