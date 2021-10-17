@@ -51,13 +51,20 @@ public class Pricing {
 
     @PUT
     @Path("/promo/activate/product")
-    protected void activerPromoProduit(){
-
+    protected void activerPromoProduit(float promo,int idProduit){
+        if(this.id==idProduit){
+            float prixPromo= this.price- (this.price*promo);
+            majPrix(prixPromo);
+        }
     }
 
     @DELETE
     @Path("/promo/desactivate/product")
-    protected void desactiverPromoProduit(){
+    protected void desactiverPromoProduit(float promo,int idProduit){
+        if(this.id==idProduit){
+            float oldPrice= this.price+(this.price*promo);
+            majPrix(oldPrice);
+        }
 
     }
 
