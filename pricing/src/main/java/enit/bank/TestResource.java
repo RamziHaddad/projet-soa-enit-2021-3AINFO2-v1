@@ -10,9 +10,8 @@ import javax.ws.rs.core.MediaType;
 @Path("/api/persons")
 public class TestResource {
 
-   
     @GET
-    @Path("/hello")
+    @Path("/id")
     @Produces(MediaType.TEXT_PLAIN)
     public String hello() {
         return "Hello RESTEasy";
