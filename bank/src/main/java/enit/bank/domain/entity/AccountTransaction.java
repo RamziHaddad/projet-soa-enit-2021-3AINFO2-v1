@@ -3,7 +3,7 @@ package enit.bank.domain.entity;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Date;
 
 @Entity
 @NoArgsConstructor @AllArgsConstructor
@@ -11,12 +11,13 @@ import java.util.Date;
 @ToString
 public class AccountTransaction {
     @Id
-    private Integer TDbId;
-    private Long TransactionAccountCode;
-    private Date TransactionDate;
-    private Long TransactionAmount;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer transactionDbId;
+    private Long transactionAccountCode;
+    private Date transactionDate;
+    private Long transactionAmount;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "AccountCode")
+    @JoinColumn(name = "accountCode")
     private BankAccount account;
 }
