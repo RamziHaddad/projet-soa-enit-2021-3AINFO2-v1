@@ -1,4 +1,4 @@
-package enit.bank;
+package enit.recommendation;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
