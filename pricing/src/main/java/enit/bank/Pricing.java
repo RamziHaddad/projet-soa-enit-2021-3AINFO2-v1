@@ -5,6 +5,8 @@ import javax.ws.rs.POST;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 
+import antlr.collections.List;
+
 
 @Path("/api/price")
 public class Pricing {
@@ -70,8 +72,7 @@ public class Pricing {
 
     @POST
     @Path("/promo/set/Categorie")
-    protected void ajouterPromoCategorie(float promo){
-
+    protected void ajouterPromoCategorie(){
     }
 
     @POST
