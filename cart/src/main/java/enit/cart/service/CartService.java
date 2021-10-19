@@ -30,5 +30,15 @@ public class CartService {
         });
         return c;
     }
+     public void addToCart(Demande demande) {
+		this.data.add(demande);
+	}
+    public void showCart() {
+		ListIterator<Demande> iterator = data.listIterator();
+		while(iterator.hasNext()) {
+			Demande demande1 = iterator.next();
+			System.out.println(demande1);
+		}
+	}
     
 }
