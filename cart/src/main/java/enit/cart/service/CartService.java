@@ -30,5 +30,15 @@ public class CartService {
         });
         return c;
     }
+    public void removeFromCart(Demande d) {
+		ListIterator<Demande> iterator1 = data.listIterator();
+		while(iterator1.hasNext()) {
+			Demande d2 = iterator1.next();
+			if (d2.productId().equals(d.productId())) {
+				this.data.remove(d);
+				break;
+			}
+		}
+	}
     
 }
