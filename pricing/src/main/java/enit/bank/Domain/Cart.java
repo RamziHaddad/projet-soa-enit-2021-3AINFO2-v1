@@ -1,24 +1,21 @@
 package enit.bank.Domain;
 
 public class Cart {
-<<<<<<< HEAD
-    private Long idCart;
+
+    private double idCart;
 
     /**
      * @return Long return the idCart
      */
-    public Long getIdCart() {
+    public double getIdCart() {
         return idCart;
     }
 
     /**
      * @param idCart the idCart to set
      */
-    public void setIdCart(Long idCart) {
+    public void setIdCart(double idCart) {
         this.idCart = idCart;
     }
 
-=======
-    
->>>>>>> 4b934e381c2c2b266aa13ae6c9b0ab544431fbaf
 }

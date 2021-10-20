@@ -1,23 +1,18 @@
 package enit.bank;
 
-<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.List;
 
-=======
->>>>>>> 4b934e381c2c2b266aa13ae6c9b0ab544431fbaf
 import javax.ws.rs.DELETE;
 import javax.ws.rs.PUT;
 import javax.ws.rs.POST;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 
-<<<<<<< HEAD
 import enit.bank.Domain.Cart;
-=======
+
 import java.util.ArrayList;
 import java.util.List;
->>>>>>> 4b934e381c2c2b266aa13ae6c9b0ab544431fbaf
 
 @Path("/api/price")
 public class Pricing {
@@ -112,8 +107,8 @@ public class Pricing {
 
     // pour calculer prix total d'une panier
     @GET
-    @Path("/price/total")
-<<<<<<< HEAD
+    @Path("/price/totalCart")
+
     public float getPrixTotalCart(int id, List<Cart> cartList) {
         float total = 0;
         for (int i = 0; i < cartList.size(); i++) {
@@ -167,17 +162,4 @@ public class Pricing {
         this.promo = promo;
     }
 
-=======
-    public float getPrixTotalCart(int id, List<Cart> CartList) {
-        int total = 0;
-        for (int i = 0; i < CartList.size(); i++) {
-            Cart cartList = (Cart) CartList.get(i);
-
-            price = CartList.getPrice();
-            total = total + price;
-        }
-        return total;
-    }
-
->>>>>>> 4b934e381c2c2b266aa13ae6c9b0ab544431fbaf
 }
