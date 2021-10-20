@@ -30,6 +30,7 @@ public class CartService {
         });
         return c;
     }
+<<<<<<< HEAD
      public void addToCart(Demande demande) {
 		this.data.add(demande);
 	}
@@ -41,5 +42,17 @@ public class CartService {
 		}
 	}
     
+=======
+    public void removeFromCart(Demande d) {
+		ListIterator<Demande> iterator1 = data.listIterator();
+		while(iterator1.hasNext()) {
+			Demande d2 = iterator1.next();
+			if (d2.productId().equals(d.productId())) {
+				this.data.remove(d);
+				break;
+			}
+		}
+	}
+>>>>>>> cb86f5e31db4d9647d6a1dfbe408585f5ceb41e6
     
 }
