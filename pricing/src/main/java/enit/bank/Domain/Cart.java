@@ -1,6 +1,7 @@
 package enit.bank.Domain;
 
 public class Cart {
+<<<<<<< HEAD
     private Long idCart;
 
     /**
@@ -17,4 +18,7 @@ public class Cart {
         this.idCart = idCart;
     }
 
+=======
+    
+>>>>>>> 4b934e381c2c2b266aa13ae6c9b0ab544431fbaf
 }
