@@ -1,11 +1,16 @@
 package enit.cart.controller;
+import java.util.ArrayList;
+import java.util.stream.Collectors;
+
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
-//import javax.ws.rs.POST;
+import javax.ws.rs.POST;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.core.Response;
 
 import enit.cart.service.*;
@@ -43,6 +48,35 @@ public class CartController {
             return Response.status(404).build();
         }
     }
+
+    @PUT
+    @Path("/{id}")
+    public Response addToCart(
+        @PathParam("id") Long id, Demande demande) {
+            Cart c = cartService.getCart(id);
+            if(c.data.size() > 0){
+                c.getData().add(demande);
+                c.setData(c.getData());
+                ArrayList<Demande> data= c.getData();
+                cartService.addData(id, data);
+            }else{
+                cartService.createCart(id);
+                ArrayList<Demande> data= new ArrayList<Demande>();
+                data.add(demande);
+                cartService.addData(id, data);
+            }
+            return Response.ok().build();
+        }
+
+
+        @DELETE
+        @Path("/{id}")
+        public Response deleteCart(@PathParam("id") Long id ){
+             cartService.deleteCart(id);
+             return Response.ok().build();
+        }
+    
+    
 
 
 }
