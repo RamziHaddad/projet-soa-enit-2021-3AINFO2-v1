@@ -10,6 +10,7 @@ package enit.cart.service;
 
 import enit.cart.domain.entity.*;
 import enit.cart.repository.*;
+import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -17,6 +18,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class CartService {
     @Autowired
     CartRepo cartRepo;
+    private Long id;
+    private ArrayList<Demande> demande;
 
 
     public Cart getCart(Long id){
@@ -30,7 +33,7 @@ public class CartService {
         });
         return c;
     }
-    public void removeFromCart(Demande d) {
+  public void removeFromCart(Demande d) {
 		ListIterator<Demande> iterator1 = data.listIterator();
 		while(iterator1.hasNext()) {
 			Demande d2 = iterator1.next();
@@ -40,5 +43,22 @@ public class CartService {
 			}
 		}
 	}
+    
+    public void createCart(Long id){
+        Cart c=new Cart();
+        c.setCartId(id);
+        cartRepo.save(c);
+    }
+    public void addData(Long id, ArrayList<Demande> data){
+       cartRepo.deleteById(id);
+       Cart c=new Cart();
+       c.setCartId(id);
+       c.setData(data);
+       cartRepo.save(c);
+
+    }
+    public void deleteCart(Long id){
+        cartRepo.deleteById(id);
+    }
     
 }

@@ -31,4 +31,7 @@ public class Cart {
     public void setData(List<Demande> data){
         this.data = data;
     }
+    public ArrayList<Demande> getData()
+    {
+        return (ArrayList<Demande>) this.data;   }
 }
