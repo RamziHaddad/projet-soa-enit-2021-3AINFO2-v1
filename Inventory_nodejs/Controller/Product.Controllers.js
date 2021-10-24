@@ -53,20 +53,36 @@ module.exports={
 
 
     },
-
-    FindById : function(req,res,next){
-        ProductModel.findById(req.params.id,function(err,item){
+    Reserver: function(req,res,next) {
+        ProductModel.findByIdAndUpdate(req.body,{$set:{etat:"reserved"}},{new:true},function(err,item){
             if(err) {
-                res.status(406).json({status: 406,message:'error Find Products ID',data:null})
+                res.status(406).json({status: 406,message:'error reserver produit'+err,data:null})
 
             }
             else {
-                res.status(201).json({status:200,message:'Find Product',data:item})
+                res.status(200).json({status:200,message:'Produit reserved',data:item})
             }
         })
+
     },
+
+
+    Liberer: function(req,res,next) {
+
+
+        ProductModel.findByIdAndUpdate(req.body,{$set:{etat:"not reserved"}},function(err,item){
+            if(err) {
+                res.status(406).json({status: 406,message:'error liberer produit'+err,data:null})
+
+            }
+            else {
+                res.status(200).json({status:200,message:'Produit not reserved',data:item})
+            }
+        })
+
+    },
+
+   
     
-    Reserver:function(req,res,next){
-        ProductModel.findById(req.params.id)
-    }
+    
 }
