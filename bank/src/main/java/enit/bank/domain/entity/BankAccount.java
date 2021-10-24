@@ -3,9 +3,8 @@ package enit.bank.domain.entity;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @NoArgsConstructor
@@ -15,13 +14,15 @@ import java.util.Set;
 @ToString
 public class BankAccount {
     @Id
-    private Long BnkAccDbId;
-    private String AccountOwnerName;
-    private String AccountPassword;
-    private Long AccountCode;
-    private Date AccountInitialDate;
-    private Double AccountInitialBalance;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long bnkAccDbId;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "TDbId")
+    private String accountOwnerName;
+    private String accountPassword;
+    private Long accountCode;
+    private Date accountInitialDate;
+    private Double accountInitialBalance;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "transactionDbId")
     private List<AccountTransaction> accountTransactionSet;
 }

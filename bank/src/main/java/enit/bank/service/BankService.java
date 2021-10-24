@@ -35,4 +35,7 @@ public class BankService implements FinancialService, AccountManager {
         bankAccountRepo.save(bankAccount);
         return bankAccount;
     }
+    public BankAccount getAccount(Long code){
+        return bankAccountRepo.findByAccountCode(code);
+    }
 }
