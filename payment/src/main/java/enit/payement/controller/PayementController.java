@@ -1,4 +1,5 @@
 package enit.payement.controller;
+
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
@@ -8,7 +9,8 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
-
+import org.jboss.resteasy.annotations.jaxrs.PathParam;
+import enit.payement.service.PayementService;
 import enit.payement.domain.entity.OrderToPay;
 import lombok.extern.slf4j.Slf4j;
 
@@ -21,19 +23,17 @@ public class PayementController {
 
     @Inject
     @RestClient
-    PaymentService paymentService;
-
-
+    PayementService paymentService;
 
     @GET
     @Path("/ordertopay")
     @Transactional
-    public Response getOrderToPay(OrderToPay orderToPay){
-        if(paymentService.postToBank(orderToPay))
+    public Response getOrderToPay(OrderToPay orderToPay) {
+        if (paymentService.postToBank(orderToPay)) {
             paymentService.save(orderToPay);
             return Response.ok().status(201).build();
-        else
+        } else
             return Response.serverError().status(403).build();
     }
-    
+
 }
