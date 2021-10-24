@@ -37,7 +37,7 @@ public class ProductService {
 	{
 		int i;
 		i = m_vProds.indexOf(new Product(targetID,""));
-		if (i<0) return;		
+		if (i<0) return;
 		m_vProds.removeElementAt(i);
 	}
 
@@ -57,5 +57,5 @@ public class ProductService {
 			p = (Product) m_vProds.elementAt(i);
 			p.PrintValues();
 		}
-	} 
+	}
 }
