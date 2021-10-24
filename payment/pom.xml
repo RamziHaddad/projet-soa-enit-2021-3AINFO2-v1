@@ -19,6 +19,14 @@
   </properties>
   <dependencyManagement>
     <dependencies>
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-rest-client</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-rest-client-jackson</artifactId>
+    </dependency>
       <dependency>
         <groupId>${quarkus.platform.group-id}</groupId>
         <artifactId>${quarkus.platform.artifact-id}</artifactId>
@@ -48,7 +56,7 @@
     <dependency>
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-smallrye-openapi</artifactId>
-  </dependency>
+    </dependency>
     <dependency>
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-junit5</artifactId>
@@ -66,6 +74,11 @@
       <version>1.18.20</version>
       <scope>provided</scope>
     </dependency>
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-spring-data-jpa</artifactId>
+    </dependency>
+
   </dependencies>
   <build>
     <plugins>
@@ -92,14 +105,15 @@
         </configuration>
       </plugin>
       <plugin>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <version>${surefire-plugin.version}</version>
-        <configuration>
-          <systemPropertyVariables>
-            <java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
-            <maven.home>${maven.home}</maven.home>
-          </systemPropertyVariables>
-        </configuration>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>${surefire-plugin.version}</version>
+          <configuration>
+              <systemPropertyVariables>
+                  <java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
+                  <maven.home>${maven.home}</maven.home>
+                  <maven.settings>${session.request.userSettingsFile.path}</maven.settings>
+              </systemPropertyVariables>
+          </configuration>
       </plugin>
     </plugins>
   </build>
