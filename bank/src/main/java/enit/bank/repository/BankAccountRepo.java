@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface BankAccountRepo extends CrudRepository<BankAccount, Long> {
-    BankAccount findByAccountCode(Long code);
+    BankAccount findBankAccountByAccountCode(Long code);
 }

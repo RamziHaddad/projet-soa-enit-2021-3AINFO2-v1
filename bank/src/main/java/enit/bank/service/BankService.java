@@ -12,6 +12,7 @@ import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.enterprise.context.ApplicationScoped;
+import java.util.List;
 
 @ApplicationScoped
 @NoArgsConstructor
@@ -36,6 +37,9 @@ public class BankService implements FinancialService, AccountManager {
         return bankAccount;
     }
     public BankAccount getAccount(Long code){
-        return bankAccountRepo.findByAccountCode(code);
+        return bankAccountRepo.findBankAccountByAccountCode(code);
+    }
+    public List<AccountTransaction> findAllByAccount(Long code){
+        return transactionRepo.findAllByAccount_AccountCode(code);
     }
 }
