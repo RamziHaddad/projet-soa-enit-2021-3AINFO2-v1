@@ -1,25 +1,53 @@
 package enit.bank;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
-import javax.ws.rs.PUT;
-import javax.ws.rs.POST;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
-import enit.bank.Domain.Cart;
+import enit.bank.Entity.Price;
+import enit.bank.Entity.Product;
+import enit.bank.Service.PriceService;
 
-import java.util.ArrayList;
-import java.util.List;
-
-@Path("/api/price")
+@ApplicationScoped
+@Path("/")
+@Produces(MediaType.APPLICATION_JSON)
+@Consumes(MediaType.APPLICATION_JSON)
 public class Pricing {
+
     int id;
     float price;
     float promo;
-    public List<Cart> CartList = new ArrayList<Cart>();
+
+    @Inject
+    private PriceService priceService;
+
+    Product prod;
+
+    @POST
+    @Path("/add/price")
+    @Produces("application/json")
+    public Response addPrice(Price price) {
+        priceService.addPrice(prod.getId(), price);
+        return Response.ok().build();
+    }
+
+    @GET
+    @Path("/prices")
+    @Produces("application/json")
+    public Response getProduct() {
+        List<Price> price = priceService.getPrice();
+        return Response.ok(price).build();
+    }
 
     @POST
     @Path("/price/set/new")
@@ -61,7 +89,7 @@ public class Pricing {
     @Path("/promo/activate/product")
     protected void activerPromoProduit(float promo, int idProduit) {
         if (this.id == idProduit) {
-            float prixPromo = this.price - (this.price * promo);
+            float prixPromo = this.price * (1 - (promo / 100));
             majPrix(prixPromo);
         }
     }
@@ -70,7 +98,7 @@ public class Pricing {
     @Path("/promo/desactivate/product")
     protected void desactiverPromoProduit(float promo, int idProduit) {
         if (this.id == idProduit) {
-            float oldPrice = this.price + (this.price * promo);
+            float oldPrice = this.price * (1 + (promo / 100));
             majPrix(oldPrice);
         }
 
@@ -101,65 +129,9 @@ public class Pricing {
 
     @GET
     @Path("/price/total")
+
     public float getPrixTotal(int id, int quantity) {
         return price * quantity;
-    }
-
-    // pour calculer prix total d'une panier
-    @GET
-    @Path("/price/totalCart")
-
-    public float getPrixTotalCart(int id, List<Cart> cartList) {
-        float total = 0;
-        for (int i = 0; i < cartList.size(); i++) {
-
-            price = cartList.getPrice();
-            total = total + price;
-
-        }
-        return total;
-    }
-
-    /**
-     * @return int return the id
-     */
-    public int getId() {
-        return id;
-    }
-
-    /**
-     * @param id the id to set
-     */
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    /**
-     * @return float return the price
-     */
-    public float getPrice() {
-        return price;
-    }
-
-    /**
-     * @param price the price to set
-     */
-    public void setPrice(float price) {
-        this.price = price;
-    }
-
-    /**
-     * @return float return the promo
-     */
-    public float getPromo() {
-        return promo;
-    }
-
-    /**
-     * @param promo the promo to set
-     */
-    public void setPromo(float promo) {
-        this.promo = promo;
     }
 
 }
