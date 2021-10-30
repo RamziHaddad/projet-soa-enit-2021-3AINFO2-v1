@@ -3,7 +3,7 @@
 # Mailling service
 
 
-This microservice was implemented by Ahmed Mustapha Ghanmi
+This microservice was implemented by Ahmed Mustapha Ghanmi & Aymen BETTAIEB
 
 In order to try something new I tried developing this microservice in **Python** with Flask.
 
